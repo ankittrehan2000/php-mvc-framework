@@ -5,13 +5,21 @@ namespace app\core;
 
 class Application
 {
-    // use strongly typed php 7.4 properties
+    // use strongly typed php 7.4+ properties
     public Router $router;
-    public function __construct() {
-        $this -> router = new Router();
+    public Request $request;
+    public Response $response;
+    public static string $ROOT_DIR;
+    public static Application $app;
+    public function __construct($rootPath) {
+        self::$app = $this;
+        $this -> request = new Request();
+        $this -> response = new Response();
+        $this -> router = new Router($this -> request, $this -> response);
+        self::$ROOT_DIR = $rootPath;
     }
 
     public function run() {
-        $this -> router -> resolve();
+        echo $this -> router -> resolve();
     }
 }
