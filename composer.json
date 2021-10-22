@@ -1,0 +1,16 @@
+{
+    "name": "ankittrehan/php-mvc-framework",
+    "authors": [
+        {
+            "name": "Ankit Trehan",
+            "email": "ankittrehan2000@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        },
+        "_comment": "Point autoloading to the current dir"
+    },
+    "require": {}
+}
