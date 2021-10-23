@@ -8,3 +8,5 @@ Instead of . notation there is -> for accessing objects
 $_SERVER is an array containing information such as headers, paths, and script locations.
 
 Move index.php to its own web folder becauese it ends up returning the composer.json file and update the require
+
+Whenever include_once is used to import something it sees the parent scope variables

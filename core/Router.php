@@ -13,6 +13,11 @@ class Router {
         $this -> routes['get'][$path] = $callback;
     }
 
+    public function post($path, $callback) {
+        // for a given path, this is the call back
+        $this -> routes['post'][$path] = $callback;
+    }
+
     public function __construct(Request $request, Response $response) {
         $this -> request = $request;
         $this -> response = $response;
@@ -25,7 +30,7 @@ class Router {
         $callback = $this -> routes[$method][$path] ?? false;
         if ($callback == false) {
             $this -> response -> setStatusCode(404);
-            return "404: Not found";
+            return $this -> renderContent("Not found");
         }
         // call the passed in callback
         if (is_string($callback)) {
@@ -34,9 +39,14 @@ class Router {
         return call_user_func($callback);
     }
 
-    public function renderView($view) {
+    public function renderView($view, $params) {
         $layoutContent = $this -> layoutContent();
-        $viewContent = $this -> renderOnlyView($view);
+        $viewContent = $this -> renderOnlyView($view, $params);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    public function renderContent($viewContent) {
+        $layoutContent = $this -> layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -48,7 +58,11 @@ class Router {
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view) {
+    protected function renderOnlyView($view, $params) {
+        foreach ($params as $key => $value) {
+            // if $key evaluates as name then the $$key will evaluate to a name var
+            $$key = $value;
+        }
         // start a buffer
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
