@@ -10,3 +10,5 @@ $_SERVER is an array containing information such as headers, paths, and script l
 Move index.php to its own web folder becauese it ends up returning the composer.json file and update the require
 
 Whenever include_once is used to import something it sees the parent scope variables
+
+filter_var checks if the constant passed in as the second argument is a valid representation of the first
