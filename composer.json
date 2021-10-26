@@ -12,5 +12,7 @@
         },
         "_comment": "Point autoloading to the current dir"
     },
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
 }

@@ -12,3 +12,5 @@ Move index.php to its own web folder becauese it ends up returning the composer.
 Whenever include_once is used to import something it sees the parent scope variables
 
 filter_var checks if the constant passed in as the second argument is a valid representation of the first
+
+Using composer to download third party libraries
