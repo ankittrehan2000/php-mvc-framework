@@ -9,7 +9,9 @@ To start the php server:
 Notes while creating the project:
 
 Composer - dependency manager
+
 Autoloading property defines which namespace to set and which folder it is in
+
 Instead of . notation there is -> for accessing objects
 
 `$_SERVER` is an array containing information such as headers, paths, and script locations.
